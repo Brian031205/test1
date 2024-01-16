@@ -25,12 +25,18 @@ polldata |>
   kable(
     caption = "Extracting the first ten rows from the poll data",
 col.names=c("application_for", "open_date", "response_rate_met"),
-linesep = "", digits = 1, booktabs=TRUE) %>%
+linesep = "", digits = 1, booktabs=TRUE) |>
   kable_styling(latex_options = "HOLD_position", font_size = 10)
 
 ```
 
 You can add options to executable code like this 
+
+```{r}
+ggplot(mapping = aes(x = OPEN_DATE, fill =RESPONSE_RATE_MET), data=polldata) +
+  geom_bar()+theme_light()+ylab("number of response")+scale_fill_discrete(name = "yes/no")+facet_wrap(~RESPONSE_RATE_MET)
+
+```
 
 ```{r}
 #| echo: false
