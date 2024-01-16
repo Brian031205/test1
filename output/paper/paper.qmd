@@ -1,0 +1,40 @@
+---
+title: "paper"
+format: pdf
+---
+
+```{r}
+path=getwd()
+path=dirname(dirname(path))
+path
+```
+
+```{r}
+library(tidyverse)
+library(janitor)
+polldata <- read_csv(paste0(path,"/input/data/polldata.csv"))
+
+```
+```{r}
+library(knitr)
+library(kableExtra)
+polldata <- polldata |>
+  select(APPLICATION_FOR, OPEN_DATE, RESPONSE_RATE_MET)
+polldata |>
+  slice(1:10) |>
+  kable(
+    caption = "Extracting the first ten rows from the poll data",
+col.names=c("application_for", "open_date", "response_rate_met"),
+linesep = "", digits = 1, booktabs=TRUE) %>%
+  kable_styling(latex_options = "HOLD_position", font_size = 10)
+
+```
+
+You can add options to executable code like this 
+
+```{r}
+#| echo: false
+2 * 2
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
